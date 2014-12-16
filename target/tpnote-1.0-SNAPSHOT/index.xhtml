@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h:messages styleClass="alert alert-error" />
+		<h:outputText
+			value="You are logged in. You can now use menu actions to operate."
+			rendered="#{!(empty sessionInfo.user)}" />
+		<h:outputLink value="/login.jsf" rendered="#{empty sessionInfo.user}">Login first</h:outputLink>
+	</ui:define>
+</ui:composition>

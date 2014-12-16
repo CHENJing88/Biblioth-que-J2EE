@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+
+		<h4>Record of borrow :
+			${bookManagementController.managedBook.name}</h4>
+
+		<h:messages styleClass="alert alert-error" />
+
+		<h:form class="form-horizontal">
+
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td style="text-align: center; font-weight: bold;">Student</td>
+						<td style="text-align: center; font-weight: bold;">Borrow Number</td>
+					    <td style="text-align: center; font-weight: bold;">Start date</td>
+						<td style="text-align: center; font-weight: bold;">Return book before</td>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat value="#{studentBorrows}" var="studentBorrow">
+						<tr>
+							<td>#{studentBorrow.user.name}</td>
+							<td>#{studentBorrow.getBorrowNb()}</td>
+							<td>#{studentBorrow.dateToString(studentBorrow.getDateDebut())}</td>
+                            <td>#{studentBorrow.dateToString(studentBorrow.getDateFin())}</td>
+                              
+                         </tr> 
+                     </ui:repeat>    
+					      
+				</tbody>
+			</table>
+
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:commandButton class="btn" value="Return to books management"
+						action="bookmanagement" immediate="true" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

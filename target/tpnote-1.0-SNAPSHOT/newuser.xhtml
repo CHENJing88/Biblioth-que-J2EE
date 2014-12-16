@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+
+		<h4>New user</h4>
+
+		<h:messages styleClass="alert alert-error" />
+
+		<h:form class="form-horizontal">
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputLogin" value="Login" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputText value="#{userManagementController.managedUser.login}"
+						id="inputLogin" placeholder="Login" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputName" value="Name" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputText value="#{userManagementController.managedUser.name}"
+						id="inputName" placeholder="Name" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputRole" value="Role" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:selectOneMenu
+						value="${userManagementController.managedUser.role}"
+						id="InputRole">
+						<f:selectItem itemValue="ADMINISTRATOR" itemLabel="Administrator" />
+						<f:selectItem itemValue="TEACHER" itemLabel="Teacher" />
+						<f:selectItem itemValue="STUDENT" itemLabel="Student" />
+					</h:selectOneMenu>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputPassword"
+					value="Password" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputSecret id="inputPassword"
+						value="#{userManagementController.managedUser.password}"
+						placeholder="Password" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:commandButton class="btn" value="Add user"
+						action="#{userManagementController.doNewUser()}" />
+					<h:commandButton class="btn" value="Cancel" action="usermanagement" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

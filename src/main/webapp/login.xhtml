@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h4>Welcome, please login.</h4>
+
+		<h:messages styleClass="alert alert-error" />
+
+		<h:form class="form-horizontal">
+			<h:panelGroup layout="block" styleClass="control-group">
+				<label class="control-label" for="inputLogin">Login</label>
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputText value="#{loginController.login}" id="inputLogin"
+						placeholder="Login" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="control-group">
+				<label class="control-label" for="inputPassword">Password</label>
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputSecret id="inputPassword"
+						value="#{loginController.password}" placeholder="Password" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:commandButton class="btn" value="Log me in"
+						action="#{loginController.authenticate()}" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

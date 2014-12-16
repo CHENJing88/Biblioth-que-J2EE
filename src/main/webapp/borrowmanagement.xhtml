@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h4>Borrow Infomation review</h4>
+		
+		<h:messages styleClass="alert alert-error" />
+
+		<h:form>
+			<h:commandLink action="#{userBorrowController.prepareNewBorrow()}" value="Add a borrow"
+				rendered="#{sessionInfo.user.role == 'ADMINISTRATOR'}" />
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<td style="text-align: center; font-weight: bold;">User</td>
+						<td style="text-align: center; font-weight: bold;">Role</td>
+						<td style="text-align: center; font-weight: bold;">Book</td>
+						<td style="text-align: center; font-weight: bold;">Author</td>
+						<td style="text-align: center; font-weight: bold;">Date Begin</td>
+						<td style="text-align: center; font-weight: bold;">Date End</td>
+						<td style="text-align: center; font-weight: bold;">Borrow Numbre</td>
+						<td colspan="2" style="text-align: center; font-weight: bold;">Action</td>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat value="#{allBorrows}" var="borrow">
+						<tr>
+							<td style="text-align: center;">#{borrow.getUser().getName()}</td>
+							<td style="text-align: center;">#{borrow.getUser().getRole().toString()}</td>
+							<td style="text-align: center;">#{borrow.getBook().getName()}</td>
+							<td style="text-align: center;">#{borrow.getBook().getAuther()}</td>
+							<td style="text-align: center;">#{borrow.dateToString(borrow.dateDebut)} </td>
+							<td style="text-align: center;">#{borrow.dateToString(borrow.dateFin)} </td>
+							<td style="text-align: center;">#{borrow.getBorrowNb()} </td>
+							<td style="text-align: center"><h:commandLink
+									action="#{userBorrowController.prepareDeleteBorrow(borrow)}"
+									value="Return Book" rendered="#{sessionInfo.user.role == 'ADMINISTRATOR'}" /></td>
+							
+						</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>

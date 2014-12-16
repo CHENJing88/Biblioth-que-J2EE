@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+
+		<h4>Delete user ${userManagementController.managedUser.login}</h4>
+
+		<h:messages styleClass="alert alert-error" />
+
+		<h:form class="form-horizontal">
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputText value="Are you sure ?" />
+				<h:panelGroup styleClass="controls" layout="block">
+					<h:commandButton class="btn" value="Yes"
+						action="#{userManagementController.doDeleteUser(true)}" />
+					<h:commandButton class="btn" value="Cancel"
+						action="#{userManagementController.doDeleteUser(false)}" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+</ui:composition>

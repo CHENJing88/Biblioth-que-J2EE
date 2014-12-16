@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+
+		<h4>New borrow</h4>
+
+		<h:messages styleClass="alert alert-error" />
+
+		<h:form class="form-horizontal">
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputLogin" value="User Login" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputText value="#{userBorrowController.userLogin}" id="inputLogin" placeholder="UserLogin" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputBookName" value="Book Name" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputText value="#{userBorrowController.bookName}" id="inputBookName" placeholder="BookName" />
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputBorrowNb" value="Borrow Numbre" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputText value="#{userBorrowController.managedBorrow.borrowNb}" id="inputBorrowNb" placeholder= "BorrowNb">
+					<f:validateLongRange minimum="-1" maximum="100" />
+					</h:inputText> 
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:panelGroup layout="block" styleClass="control-group">
+			<h:outputLabel class="control-label" for="inputDateDebut" value="DateDebut" />
+			<h:panelGroup layout="block" styleClass="controls">
+				<h:inputText id="inputDateDebut" value="#{userBorrowController.managedBorrow.dateDebut}" placeholder= "DateDebut">
+				<f:convertDateTime pattern="dd/MM/yyyy"/>(dd/MM/yyyy)
+				</h:inputText> 
+				<!--  <td style="text-align: center;">#{userBorrowController.dateToString(userBorrowController.getCurDate())}</td>-->
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputDateFin" value="DateFin" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputText id="inputDateFin" value="#{userBorrowController.managedBorrow.dateFin}" placeholder= "DateFin">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>(dd/MM/yyyy)
+					</h:inputText><!-- #{userBorrowController.getRetnDate()} #{userBorrowController.getCurDate()}(Format dd/MM/yyyy)-->
+					<!--<td style="text-align: center;">#{userBorrowController.dateToString(userBorrowController.getRetnDate())}</td>-->
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:commandButton class="btn" value="Add Borrow"
+						action="#{userBorrowController.doNewBorrow()}" />
+					<h:commandButton class="btn" value="Cancel" action="borrowmanagement" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

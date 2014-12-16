@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+
+		<h4>New book</h4>
+
+		<h:messages styleClass="alert alert-error" />
+
+		<h:form class="form-horizontal">
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:outputLabel class="control-label" for="inputName" value="Name" />
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:inputText
+						value="#{bookManagementController.managedBook.name}" id="inputName" placeholder="Name" />
+				</h:panelGroup>
+				
+				<h:outputLabel class="control-label" for="inputAuther" value="Auther" />
+				<h:panelGroup layout="block" styleClass="controls">
+						<h:inputText
+						value="#{bookManagementController.managedBook.auther}"
+						id="inputAuther" placeholder="Auther" />
+				</h:panelGroup>
+				
+				<h:outputLabel class="control-label" for="inputBookNb" value="BookNb" />
+				<h:panelGroup layout="block" styleClass="controls">
+						<h:inputText value="#{bookManagementController.managedBook.bookNb}" id="inputBookNb" placeholder="BookNb" />
+				</h:panelGroup>
+			</h:panelGroup>
+			
+			<h:panelGroup layout="block" styleClass="control-group">
+				<h:panelGroup layout="block" styleClass="controls">
+					<h:commandButton class="btn" value="Add book"
+						action="#{bookManagementController.doNewBook()}" />
+					<h:commandButton class="btn" value="Cancel"
+						action="bookmanagement" />
+				</h:panelGroup>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
